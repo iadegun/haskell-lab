@@ -148,6 +148,10 @@ deleteMin (Node x l r)     = let (y, t) = deleteMin l in
 -- removed with this one
 remove :: Ord a => Tree a -> a -> Tree a
 remove Empty _  = Empty
+remove bst@(Node x Empty r) y
+  | x == y    = r
+  | y >  x    = Node x Empty (remove r y) 
+  | otherwise = bst
 remove (Node x l r) y
   | y < x     = Node x (remove l y) r
   | y > x     = Node x l (remove r y)
