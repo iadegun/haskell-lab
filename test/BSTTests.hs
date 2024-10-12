@@ -37,6 +37,9 @@ t2 = Node 20 (Node 15 (Node 8 (leaf 7) (leaf 11)) (leaf 18))
              (Node 118
                      (Node 35 (leaf 33) (Node 49 Empty (leaf 60)))
                      (leaf 166))
+-- 
+t3 :: Tree Int
+t3 = Node 1 Empty (Node 12 Empty Empty)
 
 testToList1 :: Test
 testToList1 = [4,3,7,5,10] ~=? toList t1
@@ -291,11 +294,15 @@ testRemove3 = Node 4 Empty (Node 7 (Node 5 Empty Empty) (Node 10 Empty Empty)) ~
 testRemove4 :: Test
 testRemove4 = Node 4 (Node 3 Empty Empty) (Node 5 Empty (Node 10 Empty Empty)) ~=? remove t1 7
 
+testRemove5 :: Test
+testRemove5 = Node 12 Empty Empty  ~=? remove t3 1
+
 testRemoves :: Test
 testRemoves = TestList["testRemove1" ~: testRemove1,
                        "testRemove2" ~: testRemove2,
                        "testRemove3" ~: testRemove3,
-                       "testRemove4" ~: testRemove4]
+                       "testRemove4" ~: testRemove4,
+                       "testRemove5" ~: testRemove5]
 
 testsHUnit :: [Test]
 testsHUnit = [testLeafs,
